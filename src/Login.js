@@ -28,6 +28,7 @@ class Login extends Component {
         return(
             <form className="Login"
                   onSubmit={this.handleSubmit}
+				  style={styles.form}
             >
                 <input
                     autoFocus
@@ -37,6 +38,7 @@ class Login extends Component {
                     placeholder="username"
                     value={this.state.uname}
                     onChange={this.handleNameChange}
+					style={styles.username}
                 />
 				<input
 					required
@@ -45,13 +47,38 @@ class Login extends Component {
 					placeholder="password"
 					value={this.state.password}
 					onChange={this.handlePassChange}
+					style={styles.password}
 				/>
-                <button type="submit">
+                <button type="submit" style={styles.button}>
                     Send
                 </button>
             </form>
         )
     }
+}
+
+const styles = {
+
+	form:{
+		height: '100%',
+  		width: '100%',
+  		display: 'flex',
+  		justifyContent: 'center',
+  		alignItems: 'center',
+		
+	},
+
+	username:{
+		display: 'block',
+	},
+
+	password:{
+		display: 'block',
+	},
+
+	button:{
+		displsy: 'block',
+	},
 }
 
 export default Login
