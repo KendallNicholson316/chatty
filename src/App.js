@@ -9,7 +9,6 @@ class App extends Component {
 		super()
 
 		this.state={
-			loggedIn: false,
 			user:{},
 		}
 	}
@@ -19,20 +18,27 @@ class App extends Component {
 		this.setState({user})
 	}
 
+	loggedIn = () => {
+		return this.state.user.uid
+	}
+
+	logOut = () => {
+		this.setState({user:{}})
+	}
+
   render() {
-	if(this.state.loggedIn){
 		return(
 			<div className="App">
-        		<Main user={this.state.user}/>
-      		</div>
-    	)
-	}else{
-    	return (
-      		<div className="App">
-      			<Login login={this.login}/>
-      		</div>
-    	);
-	}
+			{
+			this.loggedIn()
+			?<Main 
+				user={this.state.user}
+				logOut={this.logOut}
+			/>
+      		:	<Login login={this.login}/>
+			}
+			</div>
+		)
   }
 }
 
