@@ -4,6 +4,7 @@ class Login extends Component {
 	constructor(){
 		super()
 		this.state = {
+			email:'',
 			uname:'',
 			password:'',
 		}
@@ -11,13 +12,18 @@ class Login extends Component {
 
 	handleSubmit = (ev) =>{
         ev.preventDefault()
-        this.props.login(this.state.uname)
+        this.props.login(this.state.uname, this.state.email)
+		this.setState({email:''})
         this.setState({uname:''})
 		this.setState({password: ''})
     }
 
     handleNameChange = (ev) => {
         this.setState({uname: ev.target.value})
+    }
+
+	handleEmailChange = (ev) => {
+        this.setState({email: ev.target.value})
     }
 
     handlePassChange = (ev) => {
@@ -42,6 +48,15 @@ class Login extends Component {
                     value={this.state.uname}
                     onChange={this.handleNameChange}
 					style={styles.input}
+                />
+				<input                    
+                    required
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    value={this.state.email}
+                    onChange={this.handleEmailChange}
+                    style={styles.input}
                 />
 				<input
 					required

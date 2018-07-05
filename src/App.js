@@ -18,13 +18,13 @@ class App extends Component {
 		}
 	}
 
-	login = (username) =>{
+	login = (username, email) =>{
 		this.setState({loggedIn: true,})
 		this.setState({
 			user:{
 				uid: 'hardCode',
 				displayName: username,
-				email: '',
+				email: 'email',
 			},
 		})
 	}
