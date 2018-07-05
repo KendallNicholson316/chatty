@@ -12,7 +12,11 @@ class Login extends Component {
 
 	handleSubmit = (ev) =>{
         ev.preventDefault()
-        this.props.login(this.state.uname, this.state.email)
+        this.props.login({
+			uid: `${this.state.uname}-dhfj78`, 
+			email: this.state.email,
+			username: this.state.uname	
+		})
 		this.setState({email:''})
         this.setState({uname:''})
 		this.setState({password: ''})

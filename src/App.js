@@ -10,23 +10,13 @@ class App extends Component {
 
 		this.state={
 			loggedIn: false,
-			user:{
-            	uid: '',
-            	displayName:'',
-            	email: '',
-	        },
+			user:{},
 		}
 	}
 
-	login = (username, email) =>{
+	login = (user) =>{
 		this.setState({loggedIn: true,})
-		this.setState({
-			user:{
-				uid: 'hardCode',
-				displayName: username,
-				email: 'email',
-			},
-		})
+		this.setState({user})
 	}
 
   render() {
