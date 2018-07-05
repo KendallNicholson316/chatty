@@ -7,15 +7,17 @@ import Login from './Login.js'
 class App extends Component {
 	constructor(){
 		super()
-
+		
+		const user = JSON.parse(localStorage.getItem('user'))
 		this.state={
-			user:{},
+			user:user || {},
 		}
 	}
 
 	login = (user) =>{
 		this.setState({loggedIn: true,})
 		this.setState({user})
+		localStorage.setItem('user', JSON.stringify(user))
 	}
 
 	loggedIn = () => {
@@ -24,6 +26,7 @@ class App extends Component {
 
 	logOut = () => {
 		this.setState({user:{}})
+		localStorage.removeItem('user')
 	}
 
   render() {
