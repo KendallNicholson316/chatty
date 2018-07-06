@@ -11,7 +11,7 @@ const UserInfo = ({user, logOut}) => {
     >
 	  <Avatar user = {user} />
       <div style={styles.user}>
-        {user.displayName}
+        {user.username}
       </div>
       <LogOutButton logOut={logOut}/>
     </div>

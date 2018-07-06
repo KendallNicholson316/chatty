@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import base from './base'
 
 import ChatHeader from './ChatHeader.js'
 import MessageList from './MessageList.js'
@@ -12,16 +13,30 @@ class Chat extends Component {
 		}
 	}
 
+    componentWillMount = () => {
+        this.messagesRef = base.syncState('messages', {
+            context: this,
+            state: 'messages',
+			asArray: true,
+        });
+    }
+
+    componentWillUnmount = () => {
+        base.removeBinding(this.messagesRef);
+    }
+
+
 	addMessage = (body) =>{
 		const messages = [...this.state.messages]
 		const user= this.props.user
 
-		messages.push({
-			id: `${user.uid}-{Date.now()}`,
-			user,
-			body,
-		})
-	
+		const msg = {
+            id: `${user.uid}-{Date.now()}`,
+            user,
+            body,
+        }
+		messages.push(msg)
+
 		this.setState({messages})
 	}
  
