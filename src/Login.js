@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 
+import Background from './computer-3163436.svg'
+
 class Login extends Component {
+
 	constructor(){
 		super()
 		this.state = {
@@ -36,8 +39,14 @@ class Login extends Component {
 
     render(){
         return(
-			<div>
-			<h1 style={styles.h1}>WELCOME TO CHATTY</h1>
+			
+		
+				<div style={{
+        			...styles.backdrop,
+        			backgroundImage: `url(${Background})`,
+      				}}
+				>
+				<h1 style={styles.h1}>WELCOME TO CHATTY</h1>
 		  <div style={styles.box}>
             <form className="Login"
                   onSubmit={this.handleSubmit}
@@ -75,21 +84,31 @@ class Login extends Component {
                     Login
                 </button>
             </form>
-		  </div>
+		  
+			</div>
 			</div>
         )
     }
 }
 
 const styles = {
+	backdrop:{			
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center center',
+		backgroundSize: 'cover',
+		backgroundAttachment: 'fixed',
+		height: '100vh',    	
+	},
+
 	h1:{
+		marginTop: 0,
 	    color : '#000000',
     	textAlign : 'center',
     	fontFamily: 'Exo 2, sans-serif',
 	},
 
 	form:{
-		
+			
 		height: '100%',
   		width: '100%',
   		display: 'inline-block',
@@ -100,6 +119,7 @@ const styles = {
 	},
 
 	box: {
+		border:'.25vh solid #818187',
 		display: 'flex',
 		justifyContent: 'center',
         alignItems: 'center',
@@ -108,7 +128,7 @@ const styles = {
   		height: '50%',
   		marginLeft: '45vh',
 		borderRadius: '25%',
-  		border: '25%',
+  		
 		padding: '5vh',
 		align:'center',
 
@@ -116,6 +136,7 @@ const styles = {
 	},
 
 	input:{
+		
 		fontSize: '2vh',
 		alignItems: 'center',
 		width: '80%',
