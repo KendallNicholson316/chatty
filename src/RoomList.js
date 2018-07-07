@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
   link: {
     display: 'block',
-    color: 'whitesmoke',
+    color: 'dark',
     textDecoration: 'none',
 
     '::before': {

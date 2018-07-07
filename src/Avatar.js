@@ -19,7 +19,8 @@ const styles = {
   height: '40px',
   width: '40px',
   fontSize: '1rem',
-  borderRadius: '20px',
+  borderRadius: '50%',
+  border: '.15vh solid #818187',
 }
 
 export default Avatar
