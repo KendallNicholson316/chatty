@@ -41,12 +41,11 @@ class Login extends Component {
         return(
 			
 		
-				<div style={{
-        			...styles.backdrop,
-        			backgroundImage: `url(${Background})`,
-      				}}
-				>
-				<h1 style={styles.h1}>WELCOME TO CHATTY</h1>
+				<div style={styles.backdrop}>
+				
+				<h1 style={styles.h1}>Welcome, are you feeling</h1>
+				<h2 style={styles.h2}>Chatty</h2>
+				
 		  <div style={styles.box}>
             <form className="Login"
                   onSubmit={this.handleSubmit}
@@ -92,19 +91,35 @@ class Login extends Component {
 }
 
 const styles = {
-	backdrop:{			
+	backdrop:{		
+		background: 'linear-gradient(#bfbaff, white, #bfbaff)',	
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: 'center center',
 		backgroundSize: 'cover',
 		backgroundAttachment: 'fixed',
 		height: '100vh',    	
 	},
+	
 
 	h1:{
 		marginTop: 0,
+		marginBottom: 0,
+		paddingTop:'5vh',
 	    color : '#000000',
     	textAlign : 'center',
-    	fontFamily: 'Exo 2, sans-serif',
+    	fontFamily: 'Satisfy, cursive',
+		fontSize: '5vh',
+	},
+	
+	h2:{
+		borderBottomLeftRadius: '50% 20%',
+  		borderBottomRightRadius: '50% 20%',
+		marginTop:0,
+        paddingBottom:'5vh',
+        color : '#000000',
+        textAlign : 'center',
+        fontFamily: 'Satisfy, cursive',
+		fontSize: '7vh',
 	},
 
 	form:{
@@ -125,11 +140,11 @@ const styles = {
         alignItems: 'center',
   		float: 'left',
   		width: '50%',
-  		height: '50%',
+  		height: '40%',
   		marginLeft: '45vh',
 		borderRadius: '25%',
   		
-		padding: '5vh',
+		padding: '5vh',	
 		align:'center',
 
 		background: '#bfbaff'
