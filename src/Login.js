@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import firebase from 'firebase'
 
 import Background from './computer-3163436.svg'
 
@@ -6,6 +7,7 @@ class Login extends Component {
 
 	constructor(){
 		super()
+		
 		this.state = {
 			email:'',
 			uname:'',
@@ -13,8 +15,42 @@ class Login extends Component {
 		}
 	}
 
+    handleGoogle = () => {	
+			
+		const provider = new firebase.auth.GoogleAuthProvider()
+					
+        firebase.auth().signInWithPopup(provider).then((result) => { 
+	    	
+			
+        // The signed-in user info.
+		const googleUser = result.user
+		
+		this.setState({uid: googleUser.uid})
+		this.setState({username: googleUser.displayName})
+		this.setState({email: googleUser.email})
+        this.props.login({
+            uid: googleUser.uid,
+            email: googleUser.email,
+            username: googleUser.displayName
+        })
+        // ...
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            const credential = error.credential;
+            // ...
+        })
+
+    }
+
+
 	handleSubmit = (ev) =>{
         ev.preventDefault()
+		debugger
         this.props.login({
 			uid: `${this.state.uname}-dhfj78`, 
 			email: this.state.email,
@@ -79,11 +115,12 @@ class Login extends Component {
 					onChange={this.handlePassChange}
 					style={styles.input}
 				/>
+				
                 <button type="submit" style={styles.button}>
                     Login
                 </button>
             </form>
-		  
+		  	<button type="submit" style={styles.button} onClick={this.handleGoogle}>GOOGLE</button>
 			</div>
 			</div>
         )

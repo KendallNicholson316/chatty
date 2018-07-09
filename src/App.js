@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import firebase from 'firebase'
+
 
 import Main from './Main.js'
 import Login from './Login.js'
@@ -7,7 +9,7 @@ import Login from './Login.js'
 class App extends Component {
 	constructor(){
 		super()
-		
+
 		const user = JSON.parse(localStorage.getItem('user'))
 		this.state={
 			user:user || {},
