@@ -47,18 +47,35 @@ class Login extends Component {
 
     }
 
+	handleSignUp = () =>{
+		firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(result=>console.log(result)).catch((error) => {
+  			// Handle Errors here.
+  			const errorCode = error.code;
+  			const errorMessage = error.message;
+			console.log(errorMessage)
+  		
+		})
+		alert("Account Created")
+	}
 
-	handleSubmit = (ev) =>{
-        ev.preventDefault()
-		debugger
+	handleLogin = () =>{
+
+		firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch((error) => {
+  			// Handle Errors here.
+  			var errorCode = error.code;
+  			var errorMessage = error.message;
+  			// ...
+		})
+
         this.props.login({
-			uid: `${this.state.uname}-dhfj78`, 
+			uid: `${this.state.uname}`, 
 			email: this.state.email,
 			username: this.state.uname	
 		})
 		this.setState({email:''})
         this.setState({uname:''})
 		this.setState({password: ''})
+
     }
 
     handleNameChange = (ev) => {
@@ -84,7 +101,7 @@ class Login extends Component {
 				
 		  <div style={styles.box}>
             <form className="Login"
-                  onSubmit={this.handleSubmit}
+                  
 				  style={styles.form}
             >
                 <input
@@ -116,11 +133,15 @@ class Login extends Component {
 					style={styles.input}
 				/>
 				
-                <button type="submit" style={styles.button}>
+                <button type="submit" style={styles.button} onClick={this.handleLogin}>
                     Login
                 </button>
+				
             </form>
-		  	<button type="submit" style={styles.button} onClick={this.handleGoogle}>GOOGLE</button>
+			<div>
+		  	<button type="submit" style={styles.button} onClick={this.handleGoogle}>sign in with GOOGLE</button>
+			<button type="submit" style={styles.button} onClick={this.handleSignUp}>Sign Up</button>
+			</div>
 			</div>
 			</div>
         )

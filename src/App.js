@@ -27,6 +27,11 @@ class App extends Component {
 	}
 
 	logOut = () => {
+		firebase.auth().signOut().then(function() {
+  			// Sign-out successful.
+			}).catch(function(error) {
+  			// An error happened.
+		})
 		this.setState({user:{}})
 		localStorage.removeItem('user')
 	}
