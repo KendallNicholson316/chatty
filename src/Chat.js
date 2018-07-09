@@ -13,12 +13,12 @@ class Chat extends Component {
 		}
 	}
 
-    componentWillMount = () => {
+    componentDidMount = () =>{
         this.messagesRef = base.syncState('messages', {
             context: this,
             state: 'messages',
 			asArray: true,
-        });
+        })
     }
 
     componentWillUnmount = () => {
