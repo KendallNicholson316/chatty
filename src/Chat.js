@@ -25,7 +25,6 @@ class Chat extends Component {
         base.removeBinding(this.messagesRef);
     }
 
-
 	addMessage = (body) =>{
 		const messages = [...this.state.messages]
 		const user= this.props.user

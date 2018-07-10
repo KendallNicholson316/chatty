@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import base from './base'
 import Sidebar from './Sidebar'
 import Chat from './Chat'
 
@@ -20,6 +20,18 @@ class Main extends Component {
 			},
 		},
 	}
+
+    componentDidMount = () =>{
+        this.roomsRef = base.syncState('rooms', {
+            context: this,
+            state: 'rooms',
+        })
+    }
+
+    componentWillUnmount = () => {
+        base.removeBinding(this.roomsRef);
+    }
+
 
 	setCurrentRoom = roomName => {
     	const room = this.state.rooms[roomName]
