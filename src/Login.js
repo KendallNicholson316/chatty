@@ -9,7 +9,7 @@ class Login extends Component {
 		super()
 		
 		this.state = {
-			error: false,
+
 			uid:'',
 			email:'',
 			uname:'',
