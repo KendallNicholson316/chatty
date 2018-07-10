@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component,Fragment } from 'react'
 import base from './base'
 import Sidebar from './Sidebar'
 import Chat from './Chat'
+import RoomForm from './RoomForm'
 
 class Main extends Component {
 	state={
@@ -10,6 +11,7 @@ class Main extends Component {
 			description: 'chat about stuff',
 		},
 		rooms:{},
+		showRoomForm: false,
 	}
 
     componentDidMount = () =>{
@@ -26,7 +28,7 @@ class Main extends Component {
     }
 
     componentWillUnmount = () => {
-        base.removeBinding(this.roomsRef);
+        base.removeBinding(this.roomsRef)
     }
 
 
@@ -42,9 +44,20 @@ class Main extends Component {
 		this.setState({rooms})
 	}
 
+	showRoomForm = () =>{
+		this.setState({showRoomForm: true})
+	}
+	
+	hideRoomForm = () => {
+		this.setState({showRoomForm: false})
+	}
+
   render() {
+	if(this.state.showRoomForm){
+		return <RoomForm addRoom={this.addRoom}/>
+	}
     return (
-      <div className="Main" style = {styles.Main}>
+      <div className="Main" style = {styles}>
         <Sidebar 
 			user={this.props.user}
 			logOut={this.props.logOut}
@@ -60,12 +73,10 @@ class Main extends Component {
   }
 }
 
-const styles ={
-	Main: {
+const styles ={ 
   		display: 'flex',
   		alignItems: 'stretch',
   		height: '100vh',
-	},
 }
 
 export default Main
