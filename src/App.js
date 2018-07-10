@@ -34,7 +34,7 @@ class App extends Component {
 	Auth = (oAuthUser) =>{
 		const user = {
        		uid: oAuthUser.uid,
-       		displayName: oAuthUser.displayName,
+       		username: oAuthUser.displayName,
        		email: oAuthUser.email,
      	}
 		this.setState({user})
