@@ -1,7 +1,9 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
-const RoomList = () => {
+import Room from './Room'
+
+const RoomList = ({ rooms }) => {
   return (
     <nav
       className={`RoomList ${css(styles.roomList)}`}
@@ -11,12 +13,11 @@ const RoomList = () => {
         Rooms
       </h2>
       <ul className={css(styles.list)}>
-        <li className={css(styles.item)}>
-          <a href="#" className={css(styles.link)}>general</a>
-        </li>
-        <li className={css(styles.item)}>
-          <a href="#" className={css(styles.link)}>random</a>
-        </li>
+		{
+		  Object.keys(rooms).map(
+			roomName => <Room roomName={roomName} key={roomName} />
+		  )
+		}
       </ul>
     </nav>
   )
