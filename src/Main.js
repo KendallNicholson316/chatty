@@ -63,6 +63,7 @@ class Main extends Component {
 			logOut={this.props.logOut}
 			rooms={this.state.rooms}
 			setCurrentRoom={this.setCurrentRoom}
+			showRoomForm={this.showRoomForm}
 		/>
         <Chat 
 			user={this.props.user}

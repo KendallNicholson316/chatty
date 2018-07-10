@@ -19,7 +19,7 @@ class Chat extends Component {
 
 	syncMessages = () =>{
 		if(this.messagesRef){
-			base.removeBinding(this.messageRef)
+			base.removeBinding(this.messagesRef)
 		}
         this.messagesRef = base.syncState(`messages/${this.props.room.name}`, 
 		{

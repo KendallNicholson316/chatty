@@ -7,11 +7,18 @@ const RoomList = (props) => {
   return (
     <nav
       className={`RoomList ${css(styles.roomList)}`}
-      style={styles.children}
     >
+	<div className={css(styles.heading)}>
       <h2 className={css(styles.h2)}>
         Rooms
       </h2>
+	  <button
+		className={css(styles.button)}
+		onClick={props.showRoomForm}
+	  >
+		<i className="fas fa-plus-circle" title="Add room"></i>
+	  </button>
+	</div>
       <ul className={css(styles.list)}>
 		{
 		  Object.keys(props.rooms).map(
@@ -54,6 +61,27 @@ const styles = StyleSheet.create({
     ':hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.2)',
     },
+  },
+
+  heading: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  button: {
+    border: 0,
+    backgroundColor: 'transparent',
+    outline: 0,
+    padding: 0,
+    color: 'rgba(255,255,255,0.4)',
+    fontSize: '1rem',
+    cursor: 'pointer',
+    transition: 'color 0.25s ease-out',
+
+    ':hover': {
+      color: 'white',
+    }
   },
 })
 
