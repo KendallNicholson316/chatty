@@ -9,6 +9,8 @@ class Login extends Component {
 		super()
 		
 		this.state = {
+			error: false,
+			uid:'',
 			email:'',
 			uname:'',
 			password:'',
@@ -51,15 +53,11 @@ class Login extends Component {
 			
         // The signed-in user info.
 		const googleUser = result.user
-		
-		this.setState({uid: googleUser.uid})
-		this.setState({username: googleUser.displayName})
-		this.setState({email: googleUser.email})
-        this.props.login({
-            uid: googleUser.uid,
-            email: googleUser.email,
-            username: googleUser.displayName
-        })
+		this.props.login({
+                uid: googleUser.uid,
+                email: googleUser.email,
+                username: googleUser.uname
+        })		
         // ...
         }).catch((error) => {
             // Handle Errors here.
@@ -75,34 +73,47 @@ class Login extends Component {
     }
 
 	handleSignUp = () =>{
-		firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(result=>console.log(result)).catch((error) => {
+		
+		firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((result) => { 
+			const regUser = result.user
+			this.props.login({
+				uid: regUser.uid,
+                email: regUser.email,
+                username: regUser.uname
+			})		
+		})
+		.catch((error) => {
   			// Handle Errors here.
   			const errorCode = error.code;
   			const errorMessage = error.message;
+			alert(errorMessage)
 			console.log(errorMessage)
-  		
+  					
 		})
-		alert("Account Created")
+		//this.props.login(this.state.uname)	
 	}
 
-	handleLogin = () =>{
-
-		firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch((error) => {
+	handleLogin = (ev) =>{
+		
+		ev.preventDefault()
+		firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((result) => {
+			const regUser = result.user
+			this.props.login({
+				uid: regUser.uid,
+                email: regUser.email,
+                username: regUser.uname
+			})	
+        })
+		.catch((error) => {
   			// Handle Errors here.
-  			var errorCode = error.code;
-  			var errorMessage = error.message;
-  			// ...
+  			const errorCode = error.code;
+  			const errorMessage = error.message;
+			alert(errorMessage)
+			console.log(errorMessage)
+  			// ...			
 		})
-
-        this.props.login({
-			uid: `${this.state.uname}`, 
-			email: this.state.email,
-			username: this.state.uname	
-		})
-		this.setState({email:''})
-        this.setState({uname:''})
-		this.setState({password: ''})
-
+		//this.props.heck(this.state.uname)
+        
     }
 
     handleNameChange = (ev) => {
@@ -127,8 +138,8 @@ class Login extends Component {
 				<h2 style={styles.h2}>Chatty</h2>
 				
 		  <div style={styles.box}>
-            <form className="Login"
-                  
+            <form className="Login"i
+               	  onSubmit={ev => this.handleLogin(ev)}   
 				  style={styles.form}
             >
                 <input
@@ -160,7 +171,7 @@ class Login extends Component {
 					style={styles.input}
 				/>
 				
-                <button type="submit" style={styles.button} onClick={this.handleLogin}>
+                <button type="submit" style={styles.button} onClick={ev=>this.handleLogin(ev)}>
                     Login
                 </button>
 				
