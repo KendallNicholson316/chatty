@@ -54,7 +54,10 @@ class Main extends Component {
 
   render() {
 	if(this.state.showRoomForm){
-		return <RoomForm addRoom={this.addRoom}/>
+		return <RoomForm 
+					addRoom={this.addRoom}
+					hideRoomForm={this.hideRoomForm}
+				/>
 	}
     return (
       <div className="Main" style = {styles}>
