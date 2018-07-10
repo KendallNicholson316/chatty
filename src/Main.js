@@ -6,25 +6,22 @@ import Chat from './Chat'
 class Main extends Component {
 	state={
 		room: {
-			name: 's3afternoon',
-			description: 'Ask questions and share code',
+			name: 'general',
+			description: 'chat about stuff',
 		},
-		rooms:{
-			s3afternoon:{
-				name: 's3afternoon',
-				description: 'Ask questions and share code',
-			},
-			wild:{
-				name: 'wild',
-				description: 'wild stuff',
-			},
-		},
+		rooms:{},
 	}
 
     componentDidMount = () =>{
         this.roomsRef = base.syncState('rooms', {
             context: this,
             state: 'rooms',
+			defaultValue:{
+				general:{
+					name:'general',
+					description: 'chat about stuff',
+				},
+			}
         })
     }
 
