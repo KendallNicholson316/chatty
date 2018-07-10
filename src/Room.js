@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
-const Room = ({ roomName }) => {
+const Room = ({ roomName, setCurrentRoom }) => {
   return (
     <li className={css(styles.item)}>
-      <a href="/" className={css(styles.link)}>
+      <a className={css(styles.link)} onClick={()=>setCurrentRoom(roomName)}>
         {roomName}
       </a>
     </li>
