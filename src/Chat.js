@@ -43,6 +43,7 @@ class Chat extends Component {
             id: `${user.uid}-{Date.now()}`,
             user,
             body,
+			createdAt: Date.now(),
         }
 		messages.push(msg)
 

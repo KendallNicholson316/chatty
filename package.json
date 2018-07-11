@@ -6,6 +6,7 @@
   "dependencies": {
     "aphrodite": "^2.2.2",
     "firebase": "^5.2.0",
+    "moment": "^2.22.2",
     "re-base": "^3.2.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -16,10 +17,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-	"deploy": "firebase deploy",
-	"predeploy": "yarn build"
+    "deploy": "firebase deploy",
+    "predeploy": "yarn build"
   },
-  "eslintConfig":{
-	"extends": "react-app"
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }
