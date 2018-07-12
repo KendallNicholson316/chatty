@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ChatHeader = ({room}) => {
+const ChatHeader = ({room, removeRoom}) => {
     return (	
 		<header 
 			className="ChatHeader" 
@@ -15,6 +15,13 @@ const ChatHeader = ({room}) => {
 				{room.description}
 			</p>
         	</div>
+
+			<button
+				style={styles.button}
+				onClick={() => removeRoom(room.name)}
+			>
+				<i className="far fa-trash-alt" title="delete room"></i>
+			</button>
     	</header>
     )
 }
@@ -27,11 +34,22 @@ const styles={
   		padding: '0 1rem',
   		display: 'flex',
   		alignItems: 'center',
+		justifyContent: 'space-between',
 	},
 
 	h2: {
   		fontSize: '1.1rem',
   		margin: '0',
+	},
+
+	button:{
+		border: 0,
+		outline: 0,
+		backgroundColor: 'transparent',
+		padding: 0,
+		cursor: 'pointer',
+		fontSize: '1rem',
+		color: 'rgba(0,0,0,0.4)',
 	},
 
  	p: {
