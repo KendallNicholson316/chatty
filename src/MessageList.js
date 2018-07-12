@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 import Message from './Message'
 
-const MessageList = ({messages, room}) => {
+class MessageList extends Component {
+  render(){
+	const {messages, room} = this.props
   return (
     <div
       className="MessageList"
@@ -22,6 +24,7 @@ const MessageList = ({messages, room}) => {
       }
     </div>
   )
+  }
 }
 
 const styles = {
