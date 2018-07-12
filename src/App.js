@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import {Route, Switch, Redirect} from 'react-router-dom'
+
 import './App.css';
 import firebase from 'firebase'
 import {auth} from './base'
@@ -59,18 +61,38 @@ class App extends Component {
 	}
 
   render() {
-		return(
-			<div className="App">
-			{
-			this.loggedIn()
-			?<Main 
-				user={this.state.user}
-				logOut={this.logOut}
-			/>
-      		:	<Login login={this.Auth}/>
-			}
-			</div>
-		)
+	    return (
+      <div className="App">
+        <Switch>
+          <Route
+            path="/login"
+            render={() => (
+              this.loggedIn()
+                ? <Redirect to="/chat" />
+                : <Login />
+            )}
+          />
+          <Route
+            path="/chat"
+            render={() => (
+              this.loggedIn()
+                ? <Main
+                    user={this.state.user}
+                    logOut={this.logOut}
+                  />
+                : <Redirect to="/login" />
+            )}
+          />
+          <Route
+            render={() => (
+              this.loggedIn()
+                ? <Redirect to="/chat" />
+                : <Redirect to="/login" />
+            )}
+          />
+        </Switch>
+      </div>
+    )		
   }
 }
 
