@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
 
 import Room from './Room'
@@ -12,17 +13,18 @@ const RoomList = (props) => {
       <h2 className={css(styles.h2)}>
         Rooms
       </h2>
-	  <button
+	  <Link
+		to="/chat/new-room"
 		className={css(styles.button)}
 		onClick={props.showRoomForm}
 	  >
 		<i className="fas fa-plus-circle" title="Add room"></i>
-	  </button>
+	  </Link>
 	</div>
       <ul className={css(styles.list)}>
 		{
 		  Object.keys(props.rooms).map(
-			roomName => <Room roomName={roomName} setCurrentRoom={props.setCurrentRoom} key={roomName} />
+			roomName => <Room roomName={roomName} key={roomName} />
 		  )
 		}
       </ul>
